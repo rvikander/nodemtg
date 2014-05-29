@@ -1,0 +1,24 @@
+extends layout
+
+block content
+	h1= title
+	p Welcome to #{title}
+
+	p #{set}
+
+	select#set
+		option
+		each s, i in data
+			option(value=s  selected=(set && s.toLowerCase()==set.toLowerCase()) )= s
+	br
+
+	select#cards
+		option
+		if (set !== undefined && cards)
+			each c, i in cards
+				option(value=c.id selected=(card && c.id==card.id) )= c.name
+	br
+	if (set && card && card.image !== '')
+		h4=card.name
+		p=card.text
+		img(src="#{card.image}")
